@@ -1,8 +1,8 @@
 package lexer
 
 import (
-	"testing"
 	"github.com/RavenStorm-bit/toy-compiler/token"
+	"testing"
 )
 
 func TestNextToken(t *testing.T) {

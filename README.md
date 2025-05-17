@@ -1,6 +1,6 @@
 # Toy Compiler
 
-A simple arithmetic expression compiler written in Go. This compiler can parse and evaluate basic mathematical expressions with the following operations:
+A simple arithmetic expression compiler written in Go. This compiler parses expressions and executes them on a small stack-based virtual machine. Supported operations include:
 - Addition (+)
 - Subtraction (-)
 - Multiplication (*)
@@ -9,16 +9,18 @@ A simple arithmetic expression compiler written in Go. This compiler can parse a
 ## Features
 - Lexical analysis (tokenization)
 - Parsing with operator precedence
-- Expression evaluation
+- Bytecode generation
+- Stack-based VM
 - Interactive REPL
 
 ## Structure
 - `token/`: Token definitions
 - `lexer/`: Tokenizer that converts input into tokens
 - `ast/`: Abstract Syntax Tree definitions
-- `parser/`: Parser that builds the AST from tokens
-- `evaluator/`: Evaluates the AST to produce results
-- `repl/`: Interactive Read-Eval-Print Loop
+ - `parser/`: Parser that builds the AST from tokens
+ - `compiler/`: Converts the AST into VM instructions
+ - `vm/`: Executes bytecode with a stack machine
+ - `repl/`: Interactive Read-Eval-Print Loop
 
 ## Usage
 
@@ -45,5 +47,6 @@ Type `exit` or `quit` to exit the REPL.
 
 1. **Lexer**: Takes the input string and converts it into tokens
 2. **Parser**: Takes tokens and builds an AST using operator precedence
-3. **Evaluator**: Traverses the AST and computes the result
+3. **Compiler & VM**: The AST is compiled into bytecode and executed by the stack-based VM
 4. **REPL**: Provides an interactive interface to test expressions
+

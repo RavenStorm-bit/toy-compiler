@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"github.com/RavenStorm-bit/toy-compiler/repl"
+	"os"
 )
 
 func main() {

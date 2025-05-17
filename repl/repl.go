@@ -4,9 +4,11 @@ import (
 	"bufio"
 	"fmt"
 	"io"
-	"github.com/RavenStorm-bit/toy-compiler/evaluator"
+
+	"github.com/RavenStorm-bit/toy-compiler/compiler"
 	"github.com/RavenStorm-bit/toy-compiler/lexer"
 	"github.com/RavenStorm-bit/toy-compiler/parser"
+	"github.com/RavenStorm-bit/toy-compiler/vm"
 )
 
 const PROMPT = ">> "
@@ -15,7 +17,7 @@ func Start(in io.Reader, out io.Writer) {
 	scanner := bufio.NewScanner(in)
 
 	for {
-		fmt.Printf(PROMPT)
+		fmt.Fprintf(out, PROMPT)
 		scanned := scanner.Scan()
 		if !scanned {
 			return
@@ -23,7 +25,7 @@ func Start(in io.Reader, out io.Writer) {
 
 		line := scanner.Text()
 		if line == "exit" || line == "quit" {
-			fmt.Println("Goodbye!")
+			fmt.Fprintln(out, "Goodbye!")
 			return
 		}
 
@@ -37,7 +39,13 @@ func Start(in io.Reader, out io.Writer) {
 		}
 
 		if expression != nil {
-			result := evaluator.Eval(expression)
+			instructions := compiler.Compile(expression)
+			machine := vm.New(instructions)
+			result, err := machine.Run()
+			if err != nil {
+				fmt.Fprintln(out, err)
+				continue
+			}
 			fmt.Fprintf(out, "%d\n", result)
 		}
 	}

@@ -2,19 +2,19 @@ package parser
 
 import (
 	"fmt"
-	"strconv"
 	"github.com/RavenStorm-bit/toy-compiler/ast"
 	"github.com/RavenStorm-bit/toy-compiler/lexer"
 	"github.com/RavenStorm-bit/toy-compiler/token"
+	"strconv"
 )
 
 const (
 	_ int = iota
 	LOWEST
-	SUM        // +, -
-	PRODUCT    // *, /
-	PREFIX     // -X
-	CALL       // myFunction(X)
+	SUM     // +, -
+	PRODUCT // *, /
+	PREFIX  // -X
+	CALL    // myFunction(X)
 )
 
 var precedences = map[token.TokenType]int{

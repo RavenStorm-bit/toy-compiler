@@ -24,6 +24,7 @@ This document describes the planned evolution of the toy compiler into a small b
    - Continue to offer an interactive REPL.
    - Add the ability to run source files directly.
 
+
 ## Planned Language Features
 - Integer and string literals.
 - Variables with lexical scope.
@@ -63,4 +64,4 @@ The above program demonstrates recursion, conditionals, and function calls runni
 4. Add standard library functions and a file-based runner.
 5. Expand the REPL to execute statements and load source files.
 
-By following this design, the project will transition from a simple evaluator into a small yet fully capable VM suitable for experimenting with language features.
+

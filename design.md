@@ -24,6 +24,45 @@ This document describes the planned evolution of the toy compiler into a small b
    - Continue to offer an interactive REPL.
    - Add the ability to run source files directly.
 
+## Directory Structure
+
+The project is organized into the following packages:
+
+```
+toy-compiler/
+├── token/        # Token type definitions
+├── lexer/        # Lexical analysis (tokenization)
+├── ast/          # Abstract Syntax Tree definitions
+├── parser/       # Parser implementation
+├── compiler/     # Bytecode generation from AST
+├── bytecode/     # Bytecode instruction definitions
+├── vm/           # Virtual machine implementation
+├── evaluator/    # Direct AST evaluation (legacy)
+├── stdlib/       # Standard library functions
+├── repl/         # Interactive REPL
+├── runner/       # File execution support
+├── main.go       # CLI entry point
+├── go.mod        # Go module definition
+├── README.md     # Project documentation
+└── design.md     # This design document
+```
+
+### Package Descriptions
+
+- **token/**: Defines token types for all language constructs (numbers, operators, keywords, etc.)
+- **lexer/**: Converts source code into a stream of tokens
+- **ast/**: Defines node types for the Abstract Syntax Tree
+- **parser/**: Builds AST from tokens using recursive descent parsing
+- **compiler/**: Traverses AST and generates bytecode instructions
+- **bytecode/**: Defines bytecode instruction format and constants
+- **vm/**: Stack-based virtual machine that executes bytecode
+- **evaluator/**: Current tree-walking interpreter (will be phased out)
+- **stdlib/**: Built-in functions like print, len, etc.
+- **repl/**: Interactive Read-Eval-Print Loop
+- **runner/**: Executes source files from the command line
+
+This structure supports incremental development while maintaining clean separation of concerns.
+
 ## Planned Language Features
 - Integer and string literals.
 - Variables with lexical scope.
